@@ -1,0 +1,56 @@
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+    }
+}
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url 'https://jitpack.io' }
+}
+
+apply plugin: 'javafx-gradle-plugin'
+
+description = """
+Example project for a TO2 course.
+
+Project name: ${project.name}
+
+Authors:
+Wojciech Chmielarz <wchmielarz@protonmail.com>
+Wiesław Stanek <w.stanek123@gmail.com> """
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '0.1'
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
+    testCompile 'cglib:cglib-nodep:3.2.5'
+    testCompile 'org.objenesis:objenesis:1.2'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.10.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.10.0'
+    compile 'com.google.guava:guava:23.6-jre'
+}
+
+sourceSets {
+    main {
+        resources.srcDirs = ['src/main/java', 'res']
+    }
+}
+
+jfx {
+    mainClass = 'pl.edu.agh.to2.Main'
+    vendor = 'WS&&WC'
+}
+
